@@ -5,7 +5,7 @@ Author: rmellis | tallulah95
 Date: 11/01/20
 */
 new explorer.window()
-.resize(727, 495)
+.resize(277, 466)
 .center()
 .controls(['min'])
 .title('Winamp')

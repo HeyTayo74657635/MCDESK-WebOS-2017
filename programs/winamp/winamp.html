@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><style type="text/css">
-<!--
-body {
-	background-color: #000000;
-}
--->
-</style></head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style type="text/css">
+    <!--
+    body {
+        background-color: #000000;
+        margin:0;
+        padding:0;
+    }
+    -->
+</style>
 
-<body>
-    <div id="app" style="height: 100%">
-        <!-- Webamp will attempt to center itself within this div -->
+  </head>
+
+  <body>
+    <div id="app" style="height: 100vh; position: relative; top: 0">
+      <!-- Webamp will render as a child of this div -->
     </div>
-    <script src="https://unpkg.com/webamp@1.4.0/built/webamp.bundle.min.js"></script>
-    <script src="https://unpkg.com/butterchurn@2.6.7/lib/butterchurn.min.js"></script>
-    <script src="https://unpkg.com/butterchurn-presets@2.4.7/lib/butterchurnPresets.min.js"></script>
-    <script>
-        const Webamp = window.Webamp;
-        new Webamp({
-            initialTracks: [{
-                metaData: {
-                    artist: "DJ Mike Llama",
-                    title: "Llama Whippin' Intro"
-                },
-                url: "https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3",
-                duration: 5.322286
-            }],
-            __butterchurnOptions: {
-                importButterchurn: () => Promise.resolve(window.butterchurn),
-                getPresets: () => {
-                    const presets = window.butterchurnPresets.getPresets();
-                    return Object.keys(presets).map((name) => {
-                        return {
-                            name,
-                            butterchurnPresetObject: presets[name]
-                        };
-                    });
-                },
-                butterchurnOpen: true
+    <script type="module">
+      import Webamp from "https://unpkg.com/webamp@^2";
+      const webamp = new Webamp({
+        initialTracks: [
+          {
+            metaData: {
+              artist: "DJ Mike Llama",
+              title: "Llama Whippin' Intro",
             },
-            __initialWindowLayout: {
-                main: { position: { x: 0, y: 0 } },
-                equalizer: { position: { x: 0, y: 116 } },
-                playlist: { position: { x: 0, y: 232 }, size: [0, 4] },
-                milkdrop: { position: { x: 275, y: 0 }, size: [7, 12] }
-            }
-        }).renderWhenReady(document.getElementById('app'));
-    </script>
-</body>
+            // NOTE: Your audio file must be served from the same domain as your HTML
+            // file, or served with permissive CORS HTTP headers:
+            // https://docs.webamp.org/docs/guides/cors
+            url: "https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3",
+            duration: 5.322286,
+          },
+          {
+            metaData: {
+              artist: "Some Artist",
+              title: "Title of Second Track",
+            },
+            url: "https://cdn.jsdelivr.net/gh/captbaritone/webamp@43434d82cfe0e37286dbbe0666072dc3190a83bc/mp3/llama-2.91.mp3",
+            duration: 5.322286,
+          },
+        ],
+        windowLayout: {
+            main: { position: { top: 0, left: 0 } },
+            equalizer: { position: { top: 116, left: 0 } },
+            playlist: { position: { top: 232, left: 0 }, size: { extraHeight: 3, extraWidth: 0 }, },
+        },
+      });
 
+      webamp.renderInto(document.getElementById("app"));
+    </script>
+  </body>
 </html>
