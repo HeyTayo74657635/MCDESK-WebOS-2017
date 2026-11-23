@@ -11,7 +11,7 @@ Date: 10/26/20
 		$('#bootlog').append('<pre>Good<br>---------------------------</pre>');
 		$.getJSON('webdows/config/wfs.json', function(files) {
 			system.files = files;
-			$('#bootlog').append('<pre>Loading and checking SYSTEM.FILES.FCWEBOS...</pre>');
+			$('#bootlog').append('<pre>Loading and checking SYSTEM.FILES.MCWEBOS...</pre>');
 			system.bootLoader = {
 				loadList: [],
 				total: 0,
